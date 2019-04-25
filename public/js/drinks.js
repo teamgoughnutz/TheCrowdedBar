@@ -2,27 +2,27 @@
 var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
+var $drinkList = $("#drinks-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveExample: function(example) {
+  saveDrinks: function(results) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
+      url: "api/dinks",
+      data: JSON.stringify(results)
     });
   },
-  getExamples: function() {
+  getDrinks: function() {
     return $.ajax({
       url: "api/examples",
       type: "GET"
     });
   },
-  deleteExample: function(id) {
+  deleteDrinks: function(id) {
     return $.ajax({
       url: "api/examples/" + id,
       type: "DELETE"
