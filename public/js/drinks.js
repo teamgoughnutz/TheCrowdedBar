@@ -1,99 +1,58 @@
-// Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
-var $submitBtn = $("#submit");
-var $drinkList = $("#drinks-list");
 
-// The API object contains methods for each kind of request we'll make
-var API = {
-  saveDrinks: function(results) {
-    return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "api/dinks",
-      data: JSON.stringify(results)
-    });
-  },
-  getDrinks: function() {
-    return $.ajax({
-      url: "api/examples",
-      type: "GET"
-    });
-  },
-  deleteDrinks: function(id) {
-    return $.ajax({
-      url: "api/examples/" + id,
-      type: "DELETE"
-    });
+
+$.get("/api/drinks/all", function(data) {
+
+  if (data.length !== 0) {
+
+    for (var i = 0; i < data.length; i++) {
+
+      var row = $("<div>");
+      row.addClass("drink");
+
+      row.append("<p>" + data[i].title + "</p>");
+      row.append("<p>" + data[i].body + "</p>");
+      row.append("<p>" + data[i].catergory + "</p>");
+      
+
+      $("#HTMLPAGE").prepend(row);
+
+    }
+
   }
-};
 
-// refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function() {
-  API.getExamples().then(function(data) {
-    var $examples = data.map(function(example) {
-      var $a = $("<a>")
-        .text(example.text)
-        .attr("href", "/example/" + example.id);
+});
 
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": example.id
-        })
-        .append($a);
-
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
-
-      $li.append($button);
-
-      return $li;
-    });
-
-    $exampleList.empty();
-    $exampleList.append($examples);
-  });
-};
-
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
-var handleFormSubmit = function(event) {
+// When user chirps (clicks addBtn)
+$("#drink-submit").on("click", function(event) {
   event.preventDefault();
 
-  var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
+  // Make a newChirp object
+  var newDrink = {
+    title: $("#title").val().trim(),
+    body: $("#drinks-box").val().trim(),
+    catergory: $("#drinks-box").val().trim(),
   };
 
-  if (!(example.text && example.description)) {
-    alert("You must enter an example text and description!");
-    return;
-  }
+  console.log(newDrink);
 
-  API.saveExample(example).then(function() {
-    refreshExamples();
-  });
+  // Send an AJAX POST-request with jQuery
+  $.post("/api/drink", newDrink)
+    // On success, run the following code
+    .then(function() {
 
-  $exampleText.val("");
-  $exampleDescription.val("");
-};
+      var row = $("<div>");
+      row.addClass("drink");
 
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function() {
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
+      row.append("<p>" + newDrink.title + "</p>");
+      row.append("<p>" + newDrink.body + "</p>");
+      row.append("<p>" + newDrink.catergory + "</p>");
+     
 
-  API.deleteExample(idToDelete).then(function() {
-    refreshExamples();
-  });
-};
+      $("#drinks-area").prepend(row);
 
-// Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+    });
+
+  // Empty each input box by replacing the value with an empty string
+  $("#title").val("");
+  $("#drinks-box").val("");
+});

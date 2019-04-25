@@ -1,34 +1,25 @@
-var Sequelize = require('sequelize');
-var Model = Sequelize.Model;
-
-module.exports = function(sequelize, DataTypes) {
-  
-  class Post extends Model {}
-  Post.init({
-    
+module.exports = function (sequelize, DataTypes) {
+  var Drink = sequelize.define("Drink", {
     title: {
-      type: Sequelize.STRING(160),
+      type: DataTypes.STRING(140),
       allowNull: false,
       validate: {
-        len: [1, 160]
+        len: [1,140]
       }
     },
     body: {
-      type: Sequelize.TEXT(400),
+      type: DataTypes.TEXT(400),
       allowNull: false,
-      validate: {
-        len: [1]
-      }
-      
+      len: [1]
     },
-    category: {
-      type: Sequelize.STRING,
+    catergory: {
+      type: DataTypes.STRING,
       allowNull: false,
       defaultValue: "Get Drunk"
     }
-  }, {
-    sequelize,
-    modelName: 'Drink'
+
   });
-  return Post
+
+
+  return Drink;
 };
