@@ -2,11 +2,11 @@ require("dotenv").config();
 var express = require("express");
 var session = require("express-session");
 var passport = require("./config/passport");
-
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+var PORT = process.env.PORT || 8080;
 var db = require("./models");
-
-
-var PORT = process.env.PORT || 3000;
 
 // Middleware for authenication
 var app = express();
@@ -14,10 +14,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
 
-app.use(session({ secret: process.env.SECRET, resave: true, saveUninitialized: true }));
+app.use(
+  session({ secret: process.env.SECRET, resave: true, saveUninitialized: true })
+);
 app.use(passport.initialize());
 app.use(passport.session()); // manage with cookies
-
 
 // Routes
 require("./routes/apiRoutes")(app);
