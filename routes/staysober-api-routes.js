@@ -21,9 +21,9 @@ module.exports = function (app) {
         // Add sequelize code for creating a drink using req.body,
         db.Drink.create({
             name: req.body.name,
-            ingredients: req.body.ingredients,
             //do i need to default this one for staysober?? if so, do it in the models
             category: req.body.category,
+            recipe: req.body.recipe,
             // then return the result using res.json
         }).then(result => res.json(result))
             .catch(function (err) {

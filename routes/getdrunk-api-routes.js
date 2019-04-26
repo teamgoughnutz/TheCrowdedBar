@@ -38,15 +38,15 @@ module.exports = function (app) {
     });
 }
 
-
+//Cris TODO - figuring out how to route for feelings assignment
     //POST route for creating a new GETDRUNK drink
     app.drink("/api/drinks/getdrunk", function (req, res) {
         // Add sequelize code for creating a drink using req.body,
         db.Drink.create({
             name: req.body.name,
-            ingredients: req.body.ingredients,
             category: req.body.category,
-            feeling: req.body.feeling
+            feeling: req.body.feeling,
+            recipe: req.body.recipe,
             // then return the result using res.json
         }).then(result => res.json(result))
             .catch(function (err) {

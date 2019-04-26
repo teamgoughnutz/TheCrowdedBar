@@ -29,6 +29,8 @@ app.use(passport.session()); // manage with cookies
 // Routes
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
+require("./routes/getdrunk-api-routes")(app);
+require("./routes/staysober-api-routes")(app);
 
 var syncOptions = { force: false };
 
