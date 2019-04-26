@@ -1,8 +1,23 @@
 module.exports = function(sequelize, DataTypes) {
   var Drink = sequelize.define("Drink", {
-    title: DataTypes.STRING,
-    body: DataTypes.TEXT,
-    catergory: DataTypes.STRING
+    title: {
+      type: DataTypes.STRING,
+      validate: {
+        len: [1,140]
+      },
+      allowNull: false
+    },
+    body: {
+      type: DataTypes.TEXT,
+      validate:{
+        len:[1,400]
+      },
+      allowNull: false
+    },
+    catergory: {
+      type: DataTypes.STRING,
+      defaultValue: "Get Drunk"
+    }
 
   });
   return Drink;
