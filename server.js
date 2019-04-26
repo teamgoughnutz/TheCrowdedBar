@@ -1,25 +1,23 @@
 require("dotenv").config();
 var express = require("express");
-var exphbs = require("express-handlebars");
+var session = require("express-session");
+var passport = require("./config/passport");
 
 var db = require("./models");
 
-var app = express();
+
 var PORT = process.env.PORT || 3000;
 
-// Middleware
+// Middleware for authenication
+var app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
 
-// Handlebars
-app.engine(
-  "handlebars",
-  exphbs({
-    defaultLayout: "main"
-  })
-);
-app.set("view engine", "handlebars");
+app.use(session({ secret: process.env.SECRET, resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session()); // manage with cookies
+
 
 // Routes
 require("./routes/apiRoutes")(app);
