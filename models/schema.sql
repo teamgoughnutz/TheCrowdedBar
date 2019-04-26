@@ -1,5 +1,7 @@
 DROP DATABASE IF EXISTS drink_db;
 CREATE DATABASE drink_db;
+<<<<<<< HEAD
+=======
 
-DROP DATABASE IF EXISTS testdb;
-CREATE DATABASE testdb;
+>>>>>>> ddavidson
+
