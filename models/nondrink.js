@@ -14,9 +14,9 @@ module.exports = function (sequelize, DataTypes) {
       },
       allowNull: false,
     },
-    catergory: {
+    feelings: {
       type: DataTypes.STRING,
-      defaultValue: "Stay Sober"
+      
     }
 
 

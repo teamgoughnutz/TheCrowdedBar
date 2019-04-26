@@ -6,7 +6,7 @@ module.exports = function(app) {
     db.Drink.findAll({}).then(function(drinks) {
       res.json(drinks);
     });
-    console.log(drinks);
+   
   });
   
 };
