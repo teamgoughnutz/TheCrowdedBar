@@ -10,6 +10,9 @@ var db = require("./models");
 
 // Middleware for authenication
 var app = express();
+var PORT = process.env.PORT || 8080;
+
+// Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));

@@ -30,7 +30,15 @@ module.exports = function(app) {
         res.json(err);
         // res.status(422).json(err.errors[0].message);
       });
+  // Get all examples
+  app.get("/api/drinks", function(req, res) {
+    db.Drink.findAll({}).then(function(drinks) {
+      res.json(drinks);
+    });
+   
   });
+  
+};
 
   // Route for logging user out
   app.get("/logout", function(req, res) {
