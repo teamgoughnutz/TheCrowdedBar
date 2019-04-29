@@ -16,10 +16,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     feelings: {
       type: DataTypes.STRING,
-      
     }
-
-
   });
   return Nondrink;
 };
