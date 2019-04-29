@@ -15,7 +15,6 @@ module.exports = function(sequelize, DataTypes) {
         len: [500]
       },
     });
-
       return Post;
     };
    
