@@ -21,8 +21,8 @@ app.use(passport.initialize());
 app.use(passport.session()); // manage with cookies
 
 // Routes
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
+require("./routes/getdrunk-api-routes")(app);
+require("./routes/staysober-api-routes")(app);
 
 var syncOptions = { force: false };
 
@@ -33,8 +33,8 @@ if (process.env.NODE_ENV === "test") {
 }
 
 // Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function() {
-  app.listen(PORT, function() {
+db.sequelize.sync(syncOptions).then(function () {
+  app.listen(PORT, function () {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
       PORT,
