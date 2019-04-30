@@ -19,7 +19,7 @@ module.exports = function (app) {
     //POST route for creating a new STAYSOBER drink
     app.post("/api/staysober", function (req, res) {
         // Add sequelize code for creating a drink using req.body,
-        db.Drink.create({
+        db.soberDrink.create({
             name: req.body.name,
             //do i need to default this one for staysober?? if so, do it in the models
             category: req.body.category,
