@@ -1,3 +1,7 @@
+//The Crowded Bar API Routes
+//we will most likley NOT NEED this file for our Project, but for now it's here as a reference for Cris
+
+//Dependencies
 var db = require("../models");
 
 var passport = require("../config/passport");
@@ -276,5 +280,6 @@ module.exports = function(app) {
         id: req.user.id
       });
     }
+>>>>>>> ddavidson
   });
 };

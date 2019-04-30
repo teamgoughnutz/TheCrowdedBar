@@ -1,3 +1,6 @@
+//The Crowded Bar HTML Routes
+
+var db = require("../models");
 // Requiring path to so we can use relative routes to our HTML files
 var path = require("path");
 
@@ -14,11 +17,12 @@ module.exports = function(app) {
     });
   });
 
+  //WTF??
   // Load example page and pass in an example by id
-  app.get("/example/:id", function(req, res) {
-    db.Drink.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
+  app.get("/drink/:id", function(req, res) {
+    db.Drink.findOne({ where: { id: req.params.id } }).then(function(dbDrink) {
       res.render("example", {
-        example: dbExample
+        example: dbDrink
       });
     });
     // If the user already has an account send them to the members page
