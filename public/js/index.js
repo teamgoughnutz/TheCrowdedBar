@@ -2,11 +2,11 @@
 var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
-
+var $drinkList = $("#drink-list");
+var $nonDrinkList = $("#nonDrink-list");
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveSober: function(results) {
+  savesoberDrink: function(results) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
@@ -16,7 +16,7 @@ var API = {
       data: JSON.stringify(results)
     });
   },
-  saveDrink: function(results) {
+  savedrunkDrink: function(results) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
@@ -26,25 +26,25 @@ var API = {
       data: JSON.stringify(results)
     });
   },
-  getSober: function() {
+  getsoberDrink: function() {
     return $.ajax({
       url: "api/staysober",
       type: "GET"
     });
   },
-  getDrink: function() {
+  getdrunkDrink: function() {
     return $.ajax({
       url: "api/getdrunk",
       type: "GET"
     });
   },
-  deleteSober: function(id) {
+  deletesoberDrink: function(id) {
     return $.ajax({
       url: "api/staysober/" + id,
       type: "DELETE"
     });
   },
-  deleteDrink: function(id) {
+  deletedrunkDrink: function(id) {
     return $.ajax({
       url: "api/getdrunk/" + id,
       type: "DELETE"
@@ -53,6 +53,33 @@ var API = {
 };
 
 // refreshExamples gets new examples from the db and repopulates the list
+// var refreshDrinks = function() {
+//   API.getsoberDrink().then(function(data) {
+//     var $nonDrink = data.map(function(results) {
+//       var $a = $("<a>")
+//         .text(nonDrink.text)
+//         .attr("href", "/drink/" + results.id);
+
+//       var $li = $("<li>")
+//         .attr({
+//           class: "list-group-item",
+//           "data-id": results.id
+//         })
+//         .append($a);
+
+//       var $button = $("<button>")
+//         .addClass("btn btn-danger float-right delete")
+//         .text("ｘ");
+
+//       $li.append($button);
+
+//       return $li;
+//     });
+
+//     $exampleList.empty();
+//     $exampleList.append($examples);
+//   });
+// };
 // var refreshExamples = function() {
 //   API.getExamples().then(function(data) {
 //     var $examples = data.map(function(example) {
@@ -80,7 +107,6 @@ var API = {
 //     $exampleList.append($examples);
 //   });
 // };
-
 
 // // handleFormSubmit is called whenever we submit a new example
 // // Save the new example to the db and refresh the list
