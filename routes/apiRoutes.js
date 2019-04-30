@@ -3,7 +3,6 @@
 //Dependencies
 var db = require("../models");
 
-<<<<<<< HEAD
 //Routes
 module.exports = function (app) {
   //GET route for all drinks
@@ -30,7 +29,6 @@ module.exports = function (app) {
       .catch(err => {
         console.log(err.message);
         res.send(500);
-=======
 var passport = require("../config/passport");
 
 module.exports = function(app) {
@@ -66,13 +64,11 @@ module.exports = function(app) {
         console.log(err);
         res.json(err);
         // res.status(422).json(err.errors[0].message);
->>>>>>> ddavidson
       });
   });
   
 };
 
-<<<<<<< HEAD
   //GET route for retrieving a single drink
   app.get("/api/drinks/:id", function (req, res) {
     // Add sequelize code to find a single drink where the id is equal to req.params.id,
@@ -86,21 +82,6 @@ module.exports = function(app) {
         console.log(err.message);
         res.send(500);
       });
-=======
-//   // Create a new example
-//   app.post("/api/examples", function(req, res) {
-//     db.Drink.create(req.body).then(function(dbExample) {
-//       res.json(dbExample);
-//     });
-//   });
-
-//   // Delete an example by id
-//   app.delete("/api/examples/:id", function(req, res) {
-//     db.Drink.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-//       res.json(dbExample);
-//     });
-//   });
-// };
   // Route for logging user out
   app.get("/logout", function(req, res) {
     req.logout();
@@ -120,6 +101,5 @@ module.exports = function(app) {
         id: req.user.id
       });
     }
->>>>>>> ddavidson
   });
 };
