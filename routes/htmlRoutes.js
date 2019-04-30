@@ -8,27 +8,20 @@ var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
   app.get("/", function(req, res) {
-    db.Drink.findAll({}).then(function(dbDrink) {
-      res.render("index", {
-        msg: "Welcome!",
-        examples: dbDrink
-      });
-    });
+    res.sendFile(path.join(__dirname, "../public/blog.html"));
   });
 
-  // Load example page and pass in an example by id
-  app.get("/drink/:id", function(req, res) {
-    db.Drink.findOne({ where: { id: req.params.id } }).then(function(dbDrink) {
-      res.render("example", {
-        example: dbDrink
-      });
-    });
-    // If the user already has an account send them to the members page
-    if (req.user) {
-      res.redirect("/members");
-    }
-    res.sendFile(path.join(__dirname, "../public/signup.html"));
+  // Route to the cms page
+  app.get("/cms", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/cms.html"));
   });
+
+  // blog route loads blog.html
+  app.get("/blog", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/blog.html"));
+  });
+
+
 
   app.get("/login", function(req, res) {
     // If the user already has an account send them to the members page
