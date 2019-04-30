@@ -13,12 +13,12 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.STRING,
         allowNull: false,
         len: [500]
-      },
-      feeling: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-        len: [5]
       }
+      // feeling: {
+      //   type: DataTypes.TEXT,
+      //   allowNull: false,
+      //   len: [5]
+      // }
     });
 
       return drunkDrink;
