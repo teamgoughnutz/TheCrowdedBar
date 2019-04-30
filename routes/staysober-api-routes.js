@@ -7,7 +7,7 @@ var db = require("../models");
 module.exports = function (app) {
     //GET route for returning all drinks in STAYSOBER category
     app.get("/api/staysober", function (req, res) {
-        db.StaySober.findAll({}).then(function (dbStaySober) {
+        db.soberDrink.findAll({}).then(function (dbStaySober) {
             res.json(dbStaySober)
                 .catch(err => {
                     console.log(err.message);
