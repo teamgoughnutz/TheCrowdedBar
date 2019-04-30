@@ -36,7 +36,7 @@ module.exports = function (app) {
                 res.send(500);
             });
     });
-}
+
 
 //Cris TODO - figuring out how to route for feelings assignment
     //POST route for creating a new GETDRUNK drink
@@ -53,3 +53,4 @@ module.exports = function (app) {
                 res.send(500);
             });
         });
+    };
