@@ -7,13 +7,13 @@ nightmare
   .type("#search_form_input_homepage", "github nightmare")
   .click("#search_button_homepage")
   .wait("#links a")
-  .evaluate(function() {
+  .evaluate(function () {
     return document.querySelector("#links a").href;
   })
   .end()
-  .then(function(result) {
+  .then(function (result) {
     console.log(result);
   })
-  .catch(function(error) {
+  .catch(function (error) {
     console.error("Search failed:", error);
   });

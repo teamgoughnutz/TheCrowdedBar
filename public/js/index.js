@@ -6,7 +6,7 @@ var $exampleList = $("#example-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveSober: function(results) {
+  saveSober: function (results) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
@@ -16,7 +16,7 @@ var API = {
       data: JSON.stringify(results)
     });
   },
-  saveDrink: function(results) {
+  saveDrink: function (results) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
@@ -26,25 +26,25 @@ var API = {
       data: JSON.stringify(results)
     });
   },
-  getSober: function() {
+  getSober: function () {
     return $.ajax({
       url: "api/staysober",
       type: "GET"
     });
   },
-  getDrink: function() {
+  getDrink: function () {
     return $.ajax({
       url: "api/getdrunk",
       type: "GET"
     });
   },
-  deleteSober: function(id) {
+  deleteSober: function (id) {
     return $.ajax({
       url: "api/staysober/" + id,
       type: "DELETE"
     });
   },
-  deleteDrink: function(id) {
+  deleteDrink: function (id) {
     return $.ajax({
       url: "api/getdrunk/" + id,
       type: "DELETE"
