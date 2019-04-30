@@ -16,7 +16,6 @@ module.exports = function(app) {
     });
   });
 
-  //WTF??
   // Load example page and pass in an example by id
   app.get("/drink/:id", function(req, res) {
     db.Drink.findOne({ where: { id: req.params.id } }).then(function(dbDrink) {
