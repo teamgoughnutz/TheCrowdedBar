@@ -6,7 +6,7 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          len: [50]
+          len: [1,50]
         }
       },
       body: {
@@ -21,5 +21,5 @@ module.exports = function(sequelize, DataTypes) {
       }
     });
 
-      return Post;
+      return drunkDrink;
     };

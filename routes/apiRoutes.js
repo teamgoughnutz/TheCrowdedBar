@@ -1,34 +1,9 @@
 //The Crowded Bar API Routes
+//we will most likley NOT NEED this file for our Project, but for now it's here as a reference for Cris
 
 //Dependencies
 var db = require("../models");
 
-//Routes
-module.exports = function (app) {
-  //GET route for all drinks
-  app.get("/api/drinks", function (req, res) {
-    //sequelize code to find all drinks and return them to the user with res.json
-    db.Drink.findAll({}).then(result => res.json(result))
-      .catch(function (err) {
-        console.log(err.message);
-        res.send(500);
-      });
-  });
-
-  //GET route for returning all drinks of a specific category (either GETDRUNK or STAYSOBER)
-  app.get("/api/drinks/category/:category", function (req, res) {
-    // Add sequelize code to find all drinks where the category is equal to req.params.category,
-    db.Drink.findAll({
-      where: {
-        category: req.params.category
-      }
-      // return the result to the user with res.json
-    }).then(function (result) {
-      res.json(result)
-    })
-      .catch(err => {
-        console.log(err.message);
-        res.send(500);
 var passport = require("../config/passport");
 
 module.exports = function(app) {
@@ -181,6 +156,81 @@ module.exports = function(app) {
         res.send(500);
       });
   });
+
+  app.get("/api/posts", function (req, res) {
+    db.Nondrink.findAll({}).then(result => res.json(result))
+      .catch(function (err) {
+        console.log(err.message);
+        res.send(500);
+      });
+  });
+
+  app.get("/api/posts/category/:category", function (req, res) {
+    db.Nondrink.findAll({
+      where: {
+        category: req.params.category
+      }
+    }).then(function (result) {
+      res.json(result)
+    })
+      .catch(err => {
+        console.log(err.message);
+        res.send(500);
+      });
+  });
+
+  app.get("/api/posts/:id", function (req, res) {
+    db.Nondrink.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(result => res.json(result))
+      .catch(function (err) {
+        console.log(err.message);
+        res.send(500);
+      });
+  });
+
+  app.post("/api/posts", function (req, res) {
+    db.Nondrink.create({
+      title: req.body.title,
+      body: req.body.body,
+      category: req.body.category
+    }).then(result => res.json(result))
+      .catch(function (err) {
+        console.log(err.message);
+        res.send(500);
+      });
+  });
+
+  app.delete("/api/posts/:id", function (req, res) {
+    db.Nondrink.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(result => res.json(result))
+      .catch(function (err) {
+        console.log(err.message);
+        res.send(500);
+      });
+  });
+
+  app.put("/api/posts", function (req, res) {
+    db.Nondrink.update({
+      title: req.body.title,
+      body: req.body.body,
+      category: req.body.category
+    }, {
+        where: {
+          id: req.body.id
+        }
+      }).then(result => res.json(result))
+      .catch(function (err) {
+        console.log(err.message);
+        res.send(500);
+      });
+  });
+  
 
    
   // Using the passport.authenticate middleware with our local strategy.
