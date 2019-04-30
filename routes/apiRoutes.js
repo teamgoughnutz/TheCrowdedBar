@@ -33,10 +33,155 @@ var passport = require("../config/passport");
 
 module.exports = function(app) {
   // Get all examples
-  app.get("/api/drinks", function(req, res) {
-    db.Drink.findAll({}).then(function(drinks) {
-      res.json(drinks);
-    });
+  var db = require("../models");
+
+  app.get("/api/drinks", function (req, res) {
+    db.Drink.findAll({}).then(result => res.json(result))
+      .catch(function (err) {
+        console.log(err.message);
+        res.send(500);
+      });
+  });
+  
+  app.get("/api/drinks/category/:category", function (req, res) {
+    db.Drink.findAll({
+      where: {
+        category: req.params.category
+      }
+    }).then(function (result) {
+      res.json(result)
+    })
+      .catch(err => {
+        console.log(err.message);
+        res.send(500);
+      });
+  });
+
+  app.get("/api/drinks/:id", function (req, res) {
+    db.Drink.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(result => res.json(result))
+      .catch(function (err) {
+        console.log(err.message);
+        res.send(500);
+      });
+  });
+
+  app.post("/api/drinks", function (req, res) {
+    db.Drink.create({
+      title: req.body.title,
+      body: req.body.body,
+      category: req.body.category
+    }).then(result => res.json(result))
+      .catch(function (err) {
+        console.log(err.message);
+        res.send(500);
+      });
+  });
+
+  app.delete("/api/drinks/:id", function (req, res) {
+    db.Drink.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(result => res.json(result))
+      .catch(function (err) {
+        console.log(err.message);
+        res.send(500);
+      });
+  });
+
+  app.put("/api/drinks", function (req, res) {
+    db.Drink.update({
+      title: req.body.title,
+      body: req.body.body,
+      category: req.body.category
+    }, {
+        where: {
+          id: req.body.id
+        }
+      }).then(result => res.json(result))
+      .catch(function (err) {
+        console.log(err.message);
+        res.send(500);
+      });
+  });
+  app.get("/api/drinks", function (req, res) {
+    db.Drink.findAll({}).then(result => res.json(result))
+      .catch(function (err) {
+        console.log(err.message);
+        res.send(500);
+      });
+  });
+  
+  app.get("/api/drinks/category/:category", function (req, res) {
+    db.Drink.findAll({
+      where: {
+        category: req.params.category
+      }
+    }).then(function (result) {
+      res.json(result)
+    })
+      .catch(err => {
+        console.log(err.message);
+        res.send(500);
+      });
+  });
+
+  app.get("/api/drinks/:id", function (req, res) {
+    db.Drink.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(result => res.json(result))
+      .catch(function (err) {
+        console.log(err.message);
+        res.send(500);
+      });
+  });
+
+  app.post("/api/drinks", function (req, res) {
+    db.Drink.create({
+      title: req.body.title,
+      body: req.body.body,
+      category: req.body.category
+    }).then(result => res.json(result))
+      .catch(function (err) {
+        console.log(err.message);
+        res.send(500);
+      });
+  });
+
+  app.delete("/api/drinks/:id", function (req, res) {
+    db.Drink.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(result => res.json(result))
+      .catch(function (err) {
+        console.log(err.message);
+        res.send(500);
+      });
+  });
+
+  app.put("/api/drinks", function (req, res) {
+    db.Drink.update({
+      title: req.body.title,
+      body: req.body.body,
+      category: req.body.category
+    }, {
+        where: {
+          id: req.body.id
+        }
+      }).then(result => res.json(result))
+      .catch(function (err) {
+        console.log(err.message);
+        res.send(500);
+      });
+  });
+
    
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
@@ -67,22 +212,6 @@ module.exports = function(app) {
       });
   });
   
-};
-
-  //GET route for retrieving a single drink
-  app.get("/api/drinks/:id", function (req, res) {
-    // Add sequelize code to find a single drink where the id is equal to req.params.id,
-    db.Drink.findOne({
-      where: {
-        id: req.params.id
-      }
-      // return the result to the user with res.json
-    }).then(result => res.json(result))
-      .catch(function (err) {
-        console.log(err.message);
-        res.send(500);
-      });
-  // Route for logging user out
   app.get("/logout", function(req, res) {
     req.logout();
     res.redirect("/");
