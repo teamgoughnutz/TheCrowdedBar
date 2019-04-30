@@ -16,10 +16,9 @@ module.exports = function (app) {
                 res.send(500);
             });
     });
-};
 
-//POST route for creating a new GETDRUNK drink
-app.post("/api/drinks/getdrunk", function (req, res) {
+    //POST route for creating a new GETDRUNK drink
+    app.post("/api/drinks/getdrunk", function (req, res) {
     // Add sequelize code for creating a drink using req.body,
     db.drunkDrink.create({
         name: req.body.name,
@@ -32,6 +31,7 @@ app.post("/api/drinks/getdrunk", function (req, res) {
             res.send(500);
         });
 });
+}
 
     //We are tabling this idea for now. If we have time after getting everything else working, we can try working in the "feelings" to GETDRUNK options
     //GET route for returning all drinks in the GETDRUNK category
@@ -50,5 +50,3 @@ app.post("/api/drinks/getdrunk", function (req, res) {
            //     console.log(err.message);
              //   res.send(500);
            // });
-   // });
-//})
