@@ -8,20 +8,18 @@ var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function (app) {
   app.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname, newFunction()));
+    res.sendFile(path.join(__dirname, "../private/homepage.html"));
   });
 
-  // Route to the cms page
-  app.get("/cms", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/cms.html"));
+  //route to Get Drunk
+  app.get("/getdrunk", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/getdrunk.html"));
   });
 
-  // blog route loads blog.html
-  app.get("/blog", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/blog.html"));
+  //route to Stay Sober
+  app.get("/staysober", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/virgin.html"));
   });
-
-
 
   app.get("/login", function (req, res) {
     // If the user already has an account send them to the members page
