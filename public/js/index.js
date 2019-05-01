@@ -1,6 +1,6 @@
 // Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
+var $drinkName = $("#example-text");
+var $drinkBody = $("#example-description");
 var $submitBtn = $("#submit");
 var $drinkList = $("#drink-list");
 var $nonDrinkList = $("#nonDrink-list");
@@ -52,7 +52,7 @@ var API = {
   }
 };
 
-refreshExamples gets new examples from the db and repopulates the list
+// refreshExamples gets new examples from the db and repopulates the list
 var refreshsoberDrinks = function() {
   API.getsoberDrink().then(function(data) {
     var $nonDrink = data.map(function(results) {
@@ -85,7 +85,7 @@ var refreshdrunkDrink = function() {
     var $drunkDrink = data.map(function(results) {
       var $a = $("<a>")
         .text(results.text)
-        .attr("href", "/example/" + example.id);
+        .attr("href", "/drink/" + results.id);
 
       var $li = $("<li>")
         .attr({
