@@ -12,14 +12,14 @@ module.exports = function (app) {
   });
 
   //route to Get Drunk
-  app.get("/getdrunk", function (req, res) {
-    res.sendFile(path.join(__dirname, "../private/getdrunk.html"));
-  });
+  // app.get("/getdrunk", function (req, res) {
+  //   res.sendFile(path.join(__dirname, "../private/getdrunk.html"));
+  // });
 
   //route to Stay Sober
-  app.get("/staysober", function (req, res) {
-    res.sendFile(path.join(__dirname, "../private/virgin.html"));
-  });
+  // app.get("/staysober", function (req, res) {
+  //   res.sendFile(path.join(__dirname, "../private/virgin.html"));
+  // });
 
   app.get("/signup", function (req, res) {
     // If the user already has an account send them to the members page
@@ -31,9 +31,10 @@ module.exports = function (app) {
 
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
-  app.get("/members", isAuthenticated, function (req, res) {
-    res.sendFile(path.join(__dirname, "../private/homepage"));
+  app.get("/", isAuthenticated, function (req, res) {
+    res.sendFile(path.join(__dirname, "../private/homepage.html"));
   });
 };
+
 
 
