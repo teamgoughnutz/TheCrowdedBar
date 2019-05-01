@@ -21,6 +21,21 @@ module.exports = function (app) {
             });
     });
 
+    app.get("/api/getdrunk", function (req, res) {
+        // Add sequelize code to find all GETDRUNK drinks and return the result to the user with res.json
+        db.Drinks.findAll({
+            where: {
+            id: []
+            }
+        }).then(function (dbGetDrunk) {
+            res.json(dbGetDrunk);
+        })
+            .catch(err => {
+                console.log(err.message);
+                res.send(500);
+            });
+    });
+
     app.post("/api/getdrunk", function (req, res) {
         // Add sequelize code for creating a drink using req.body,
         db.Drinks.create({
