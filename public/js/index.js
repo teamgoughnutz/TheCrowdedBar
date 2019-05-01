@@ -52,97 +52,123 @@ var API = {
   }
 };
 
-// refreshExamples gets new examples from the db and repopulates the list
-// var refreshDrinks = function() {
-//   API.getsoberDrink().then(function(data) {
-//     var $nonDrink = data.map(function(results) {
-//       var $a = $("<a>")
-//         .text(nonDrink.text)
-//         .attr("href", "/drink/" + results.id);
+refreshExamples gets new examples from the db and repopulates the list
+var refreshsoberDrinks = function() {
+  API.getsoberDrink().then(function(data) {
+    var $nonDrink = data.map(function(results) {
+      var $a = $("<a>")
+        .text(nonDrink.text)
+        .attr("href", "/drink/" + results.id);
 
-//       var $li = $("<li>")
-//         .attr({
-//           class: "list-group-item",
-//           "data-id": results.id
-//         })
-//         .append($a);
+      var $li = $("<li>")
+        .attr({
+          class: "list-group-item",
+          "data-id": results.id
+        })
+        .append($a);
 
-//       var $button = $("<button>")
-//         .addClass("btn btn-danger float-right delete")
-//         .text("ｘ");
+      var $button = $("<button>")
+        .addClass("btn btn-danger float-right delete")
+        .text("ｘ");
 
-//       $li.append($button);
+      $li.append($button);
 
-//       return $li;
-//     });
+      return $li;
+    });
 
-//     $exampleList.empty();
-//     $exampleList.append($examples);
-//   });
-// };
-// var refreshExamples = function() {
-//   API.getExamples().then(function(data) {
-//     var $examples = data.map(function(example) {
-//       var $a = $("<a>")
-//         .text(example.text)
-//         .attr("href", "/example/" + example.id);
+    $nonDrinkList.empty();
+    $nonDrinkList.append($nonDrink);
+  });
+};
+var refreshdrunkDrink = function() {
+  API.getdrunkDrink().then(function(data) {
+    var $drunkDrink = data.map(function(results) {
+      var $a = $("<a>")
+        .text(results.text)
+        .attr("href", "/example/" + example.id);
 
-//       var $li = $("<li>")
-//         .attr({
-//           class: "list-group-item",
-//           "data-id": example.id
-//         })
-//         .append($a);
+      var $li = $("<li>")
+        .attr({
+          class: "list-group-item",
+          "data-id": results.id
+        })
+        .append($a);
 
-//       var $button = $("<button>")
-//         .addClass("btn btn-danger float-right delete")
-//         .text("ｘ");
+      var $button = $("<button>")
+        .addClass("btn btn-danger float-right delete")
+        .text("ｘ");
 
-//       $li.append($button);
+      $li.append($button);
 
-//       return $li;
-//     });
+      return $li;
+    });
 
-//     $exampleList.empty();
-//     $exampleList.append($examples);
-//   });
-// };
+    $drunkDrinkList.empty();
+    $drunkDrinkList.append($drunkDrink);
+  });
+};
 
-// // handleFormSubmit is called whenever we submit a new example
-// // Save the new example to the db and refresh the list
-// var handleFormSubmit = function(event) {
-//   event.preventDefault();
+// handleFormSubmit is called whenever we submit a new example
+// Save the new example to the db and refresh the list
+var handleFormSubmit = function(event) {
+  event.preventDefault();
 
-//   var example = {
-//     text: $exampleText.val().trim(),
-//     description: $exampleDescription.val().trim()
-//   };
+  var newNonDrink = {
+    name: $nonDrinkName.val().trim(),
+    body: $nonDrinkbody.val().trim()
+  };
 
-//   if (!(example.text && example.description)) {
-//     alert("You must enter an example text and description!");
-//     return;
-//   }
+  if (!(newNonDrink.name && newNonDrink.body)) {
+    alert("You must enter an example name and body!");
+    return;
+  }
 
-//   API.saveExample(example).then(function() {
-//     refreshExamples();
-//   });
+  API.saveNewNonDrink(newNonDrink).then(function() {
+    refreshsoberDrinks();
+  });
 
-//   $exampleText.val("");
-//   $exampleDescription.val("");
-// };
+  $newNonDrink.name.val("");
+  $newNonDrink.body.val("");
+};
+var handleFormSubmit = function(event) {
+  event.preventDefault();
 
-// // handleDeleteBtnClick is called when an example's delete button is clicked
-// // Remove the example from the db and refresh the list
-// var handleDeleteBtnClick = function() {
-//   var idToDelete = $(this)
-//     .parent()
-//     .attr("data-id");
+  var newDrink = {
+    name: $drinkName.val().trim(),
+    body: $drinkBody.val().trim()
+  };
 
-//   API.deleteExample(idToDelete).then(function() {
-//     refreshExamples();
-//   });
-// };
+  if (!(newDrink.name && newDrink.body)) {
+    alert("You must enter an example Name and Body!");
+    return;
+  }
 
-// // Add event listeners to the submit and delete buttons
-// $submitBtn.on("click", handleFormSubmit);
-// $exampleList.on("click", ".delete", handleDeleteBtnClick);
+  API.saveNewDrink(newDrink).then(function() {
+    refreshdrunkDrinks();
+  });
+
+  $newDrink.name.val("");
+  $newDrink.body.val("");
+};
+
+// handleDeleteBtnClick is called when an example's delete button is clicked
+// Remove the example from the db and refresh the list
+var handleDeleteBtnClick = function() {
+  var idToDelete = $(this)
+    .parent()
+    .attr("data-id");
+
+  API.deletesoberDrink(idToDelete).then(function() {
+    refreshsoberDrinks();
+  });
+
+  API.deletedrunkDrink(idToDelete).then(function(){
+    refreshdrunkDrink();
+  });
+  
+};
+
+// Add event listeners to the submit and delete buttons
+$submitBtn.on("click", handleFormSubmit);
+$drunkDrinkList.on("click", ".delete", handleDeleteBtnClick);
+$nonDrinkList.on("click", ".delete", handleDeleteBtnClick);
