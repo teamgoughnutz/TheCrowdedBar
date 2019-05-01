@@ -16,7 +16,6 @@ module.exports = function (app) {
                 res.send(500);
             });
     });
-};
 
 //POST route for creating a new GETDRUNK drink
  app.post("/api/drinks/getdrunk", function (req, res) {
@@ -32,6 +31,7 @@ module.exports = function (app) {
             res.send(500);
         });
 });
+}
 
 //We are tabling this idea for now. If we have time after getting everything else working, we can try working in the "feelings" to GETDRUNK options
 //GET route for returning all drinks in the GETDRUNK category
