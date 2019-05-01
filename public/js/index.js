@@ -1,47 +1,69 @@
 // Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
+var $drinkName = $("#example-text");
+var $drinkBody = $("#example-description");
 var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
-
+var $drinkList = $("#drink-list");
+var $nonDrinkList = $("#nonDrink-list");
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveExample: function(example) {
+  savesoberDrink: function(results) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
+      url: "api/staysober",
+      data: JSON.stringify(results)
     });
   },
-  getExamples: function() {
+  savedrunkDrink: function(results) {
     return $.ajax({
-      url: "api/examples",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "api/getdrunk",
+      data: JSON.stringify(results)
+    });
+  },
+  getsoberDrink: function() {
+    return $.ajax({
+      url: "api/staysober",
       type: "GET"
     });
   },
-  deleteExample: function(id) {
+  getdrunkDrink: function() {
     return $.ajax({
-      url: "api/examples/" + id,
+      url: "api/getdrunk",
+      type: "GET"
+    });
+  },
+  deletesoberDrink: function(id) {
+    return $.ajax({
+      url: "api/staysober/" + id,
+      type: "DELETE"
+    });
+  },
+  deletedrunkDrink: function(id) {
+    return $.ajax({
+      url: "api/getdrunk/" + id,
       type: "DELETE"
     });
   }
 };
 
 // refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function() {
-  API.getExamples().then(function(data) {
-    var $examples = data.map(function(example) {
+var refreshsoberDrinks = function() {
+  API.getsoberDrink().then(function(data) {
+    var $nonDrink = data.map(function(results) {
       var $a = $("<a>")
-        .text(example.text)
-        .attr("href", "/example/" + example.id);
+        .text(nonDrink.text)
+        .attr("href", "/drink/" + results.id);
 
       var $li = $("<li>")
         .attr({
           class: "list-group-item",
-          "data-id": example.id
+          "data-id": results.id
         })
         .append($a);
 
@@ -54,8 +76,35 @@ var refreshExamples = function() {
       return $li;
     });
 
-    $exampleList.empty();
-    $exampleList.append($examples);
+    $nonDrinkList.empty();
+    $nonDrinkList.append($nonDrink);
+  });
+};
+var refreshdrunkDrink = function() {
+  API.getdrunkDrink().then(function(data) {
+    var $drunkDrink = data.map(function(results) {
+      var $a = $("<a>")
+        .text(results.text)
+        .attr("href", "/drink/" + results.id);
+
+      var $li = $("<li>")
+        .attr({
+          class: "list-group-item",
+          "data-id": results.id
+        })
+        .append($a);
+
+      var $button = $("<button>")
+        .addClass("btn btn-danger float-right delete")
+        .text("ｘ");
+
+      $li.append($button);
+
+      return $li;
+    });
+
+    $drunkDrinkList.empty();
+    $drunkDrinkList.append($drunkDrink);
   });
 };
 
@@ -64,22 +113,42 @@ var refreshExamples = function() {
 var handleFormSubmit = function(event) {
   event.preventDefault();
 
-  var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
+  var newNonDrink = {
+    name: $nonDrinkName.val().trim(),
+    body: $nonDrinkbody.val().trim()
   };
 
-  if (!(example.text && example.description)) {
-    alert("You must enter an example text and description!");
+  if (!(newNonDrink.name && newNonDrink.body)) {
+    alert("You must enter an example name and body!");
     return;
   }
 
-  API.saveExample(example).then(function() {
-    refreshExamples();
+  API.saveNewNonDrink(newNonDrink).then(function() {
+    refreshsoberDrinks();
   });
 
-  $exampleText.val("");
-  $exampleDescription.val("");
+  $newNonDrink.name.val("");
+  $newNonDrink.body.val("");
+};
+var handleFormSubmit = function(event) {
+  event.preventDefault();
+
+  var newDrink = {
+    name: $drinkName.val().trim(),
+    body: $drinkBody.val().trim()
+  };
+
+  if (!(newDrink.name && newDrink.body)) {
+    alert("You must enter an drink Name and Body!");
+    return;
+  }
+
+  API.saveNewDrink(newDrink).then(function() {
+    refreshdrunkDrinks();
+  });
+
+  $newDrink.name.val("");
+  $newDrink.body.val("");
 };
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
@@ -89,11 +158,17 @@ var handleDeleteBtnClick = function() {
     .parent()
     .attr("data-id");
 
-  API.deleteExample(idToDelete).then(function() {
-    refreshExamples();
+  API.deletesoberDrink(idToDelete).then(function() {
+    refreshsoberDrinks();
   });
+
+  API.deletedrunkDrink(idToDelete).then(function(){
+    refreshdrunkDrink();
+  });
+  
 };
 
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+$drunkDrinkList.on("click", ".delete", handleDeleteBtnClick);
+$nonDrinkList.on("click", ".delete", handleDeleteBtnClick);
