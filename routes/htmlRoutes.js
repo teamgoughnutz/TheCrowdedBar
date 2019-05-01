@@ -6,24 +6,22 @@ var path = require("path");
 // Requiring our custom middleware for checking if a user is logged in
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 
-module.exports = function (app) {
-  app.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/blog.html"));
+module.exports = function(app) {
+  app.get("/", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/index.html"));
   });
 
-  // Route to the cms page
-  app.get("/cms", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/cms.html"));
+  //route for user to signup if not a member
+  app.get("/signup", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/signup.html"));
   });
 
-  // blog route loads blog.html
-  app.get("/blog", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/blog.html"));
+  //route for drinks
+  app.get("/drinks", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/index.html"));
   });
 
-
-
-  app.get("/login", function (req, res) {
+  app.get("/login", function(req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
       res.redirect("/members");
