@@ -1,7 +1,7 @@
 //GetDrunk drinks js
 
 module.exports = function (sequelize, DataTypes) {
-  var drunkDrink = sequelize.define("Get Drunk Drink", {
+  var Drinks = sequelize.define("Drinks", {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -14,12 +14,7 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
       len: [500]
     }
-    // feeling: {
-    //   type: DataTypes.TEXT,
-    //   allowNull: false,
-    //   len: [5]
-    // }
   });
 
-  return drunkDrink;
+  return Drinks;
 };
