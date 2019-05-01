@@ -2,11 +2,11 @@
 var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
-
+var $drinkList = $("#drink-list");
+var $nonDrinkList = $("#nonDrink-list");
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveSober: function(results) {
+  savesoberDrink: function(results) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
@@ -16,7 +16,7 @@ var API = {
       data: JSON.stringify(results)
     });
   },
-  saveDrink: function(results) {
+  savedrunkDrink: function(results) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
@@ -26,25 +26,25 @@ var API = {
       data: JSON.stringify(results)
     });
   },
-  getSober: function() {
+  getsoberDrink: function() {
     return $.ajax({
       url: "api/staysober",
       type: "GET"
     });
   },
-  getDrink: function() {
+  getdrunkDrink: function() {
     return $.ajax({
       url: "api/getdrunk",
       type: "GET"
     });
   },
-  deleteSober: function(id) {
+  deletesoberDrink: function(id) {
     return $.ajax({
       url: "api/staysober/" + id,
       type: "DELETE"
     });
   },
-  deleteDrink: function(id) {
+  deletedrunkDrink: function(id) {
     return $.ajax({
       url: "api/getdrunk/" + id,
       type: "DELETE"
@@ -52,71 +52,123 @@ var API = {
   }
 };
 
-// refreshExamples gets new examples from the db and repopulates the list
-// var refreshExamples = function() {
-//   API.getExamples().then(function(data) {
-//     var $examples = data.map(function(example) {
-//       var $a = $("<a>")
-//         .text(example.text)
-//         .attr("href", "/example/" + example.id);
+refreshExamples gets new examples from the db and repopulates the list
+var refreshsoberDrinks = function() {
+  API.getsoberDrink().then(function(data) {
+    var $nonDrink = data.map(function(results) {
+      var $a = $("<a>")
+        .text(nonDrink.text)
+        .attr("href", "/drink/" + results.id);
 
-//       var $li = $("<li>")
-//         .attr({
-//           class: "list-group-item",
-//           "data-id": example.id
-//         })
-//         .append($a);
+      var $li = $("<li>")
+        .attr({
+          class: "list-group-item",
+          "data-id": results.id
+        })
+        .append($a);
 
-//       var $button = $("<button>")
-//         .addClass("btn btn-danger float-right delete")
-//         .text("ｘ");
+      var $button = $("<button>")
+        .addClass("btn btn-danger float-right delete")
+        .text("ｘ");
 
-//       $li.append($button);
+      $li.append($button);
 
-//       return $li;
-//     });
+      return $li;
+    });
 
-//     $exampleList.empty();
-//     $exampleList.append($examples);
-//   });
-// };
+    $nonDrinkList.empty();
+    $nonDrinkList.append($nonDrink);
+  });
+};
+var refreshdrunkDrink = function() {
+  API.getdrunkDrink().then(function(data) {
+    var $drunkDrink = data.map(function(results) {
+      var $a = $("<a>")
+        .text(results.text)
+        .attr("href", "/example/" + example.id);
 
+      var $li = $("<li>")
+        .attr({
+          class: "list-group-item",
+          "data-id": results.id
+        })
+        .append($a);
 
-// // handleFormSubmit is called whenever we submit a new example
-// // Save the new example to the db and refresh the list
-// var handleFormSubmit = function(event) {
-//   event.preventDefault();
+      var $button = $("<button>")
+        .addClass("btn btn-danger float-right delete")
+        .text("ｘ");
 
-//   var example = {
-//     text: $exampleText.val().trim(),
-//     description: $exampleDescription.val().trim()
-//   };
+      $li.append($button);
 
-//   if (!(example.text && example.description)) {
-//     alert("You must enter an example text and description!");
-//     return;
-//   }
+      return $li;
+    });
 
-//   API.saveExample(example).then(function() {
-//     refreshExamples();
-//   });
+    $drunkDrinkList.empty();
+    $drunkDrinkList.append($drunkDrink);
+  });
+};
 
-//   $exampleText.val("");
-//   $exampleDescription.val("");
-// };
+// handleFormSubmit is called whenever we submit a new example
+// Save the new example to the db and refresh the list
+var handleFormSubmit = function(event) {
+  event.preventDefault();
 
-// // handleDeleteBtnClick is called when an example's delete button is clicked
-// // Remove the example from the db and refresh the list
-// var handleDeleteBtnClick = function() {
-//   var idToDelete = $(this)
-//     .parent()
-//     .attr("data-id");
+  var newNonDrink = {
+    name: $nonDrinkName.val().trim(),
+    body: $nonDrinkbody.val().trim()
+  };
 
-//   API.deleteExample(idToDelete).then(function() {
-//     refreshExamples();
-//   });
-// };
+  if (!(newNonDrink.name && newNonDrink.body)) {
+    alert("You must enter an example name and body!");
+    return;
+  }
 
-// // Add event listeners to the submit and delete buttons
-// $submitBtn.on("click", handleFormSubmit);
-// $exampleList.on("click", ".delete", handleDeleteBtnClick);
+  API.saveNewNonDrink(newNonDrink).then(function() {
+    refreshsoberDrinks();
+  });
+
+  $newNonDrink.name.val("");
+  $newNonDrink.body.val("");
+};
+var handleFormSubmit = function(event) {
+  event.preventDefault();
+
+  var newDrink = {
+    name: $drinkName.val().trim(),
+    body: $drinkBody.val().trim()
+  };
+
+  if (!(newDrink.name && newDrink.body)) {
+    alert("You must enter an example Name and Body!");
+    return;
+  }
+
+  API.saveNewDrink(newDrink).then(function() {
+    refreshdrunkDrinks();
+  });
+
+  $newDrink.name.val("");
+  $newDrink.body.val("");
+};
+
+// handleDeleteBtnClick is called when an example's delete button is clicked
+// Remove the example from the db and refresh the list
+var handleDeleteBtnClick = function() {
+  var idToDelete = $(this)
+    .parent()
+    .attr("data-id");
+
+  API.deletesoberDrink(idToDelete).then(function() {
+    refreshsoberDrinks();
+  });
+
+  API.deletedrunkDrink(idToDelete).then(function(){
+    refreshdrunkDrink();
+  });
+  
+};
+
+// Add event listeners to the submit and delete buttons
+$submitBtn.on("click", handleFormSubmit);
+$drunkDrinkList.on("click", ".delete", handleDeleteBtnClick);
+$nonDrinkList.on("click", ".delete", handleDeleteBtnClick);
