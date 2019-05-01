@@ -8,7 +8,7 @@ var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function (app) {
   app.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/blog.html"));
+    res.sendFile(path.join(__dirname, newFunction()));
   });
 
   // Route to the cms page
@@ -37,3 +37,7 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/members.html"));
   });
 };
+function newFunction() {
+  return "../public/blog.html";
+}
+

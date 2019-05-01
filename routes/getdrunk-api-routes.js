@@ -19,12 +19,12 @@ module.exports = function (app) {
 };
 
 //POST route for creating a new GETDRUNK drink
-app.post("/api/drinks/getdrunk", function (req, res) {
+ app.post("/api/drinks/getdrunk", function (req, res) {
     // Add sequelize code for creating a drink using req.body,
     db.drunkDrink.create({
         name: req.body.name,
-        category: req.body.category,
-        recipe: req.body.recipe,
+        body: req.body.body,
+        
         // then return the result using res.json
     }).then(result => res.json(result))
         .catch(function (err) {
@@ -55,18 +55,18 @@ app.post("/api/drinks/getdrunk", function (req, res) {
 
 //Cris TODO - figuring out how to route for feelings assignment
 //POST route for creating a new GETDRUNK drink
-app.post("/api/drinks/getdrunk", function (req, res) {
-    // Add sequelize code for creating a drink using req.body,
-    db.drunkDrink.create({
-        name: req.body.name,
-        category: req.body.category,
-        recipe: req.body.recipe,
-        // then return the result using res.json
-    }).then(result => res.json(result))
-        .catch(function (err) {
-            console.log(err.message);
-            res.send(500);
-        });
-});
+// app.post("/api/drinks/getdrunk", function (req, res) {
+//     // Add sequelize code for creating a drink using req.body,
+//     db.drunkDrink.create({
+//         name: req.body.name,
+//         category: req.body.category,
+//         recipe: req.body.recipe,
+//         // then return the result using res.json
+//     }).then(result => res.json(result))
+//         .catch(function (err) {
+//             console.log(err.message);
+//             res.send(500);
+//         });
+// });
 
 
