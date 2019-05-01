@@ -35,7 +35,5 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../private/members.html"));
   });
 };
-function newFunction() {
-  return "../public/blog.html";
-}
+
 
