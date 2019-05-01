@@ -16,5 +16,13 @@ module.exports = function (sequelize, DataTypes) {
     }
   });
 
+  Drinks.associate = function(models) {
+    Category.belongsTo(models.Drinks, {
+      foreignKey: {
+        allowNull: false
+    }
+  });
+};
+
   return Drinks;
 };

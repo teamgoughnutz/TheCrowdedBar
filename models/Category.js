@@ -5,5 +5,11 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false,
         },
     });
+
+    Category.associate = function(models) {
+        //association for category to drinks
+        Category.hasMany(models.Drinks);
+      };
+
     return Category;
 };
