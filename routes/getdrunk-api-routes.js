@@ -22,7 +22,7 @@ module.exports = function (app) {
 //POST route for creating a new GETDRUNK drink
 app.post("/api/getdrunk", function (req, res) {
     // Add sequelize code for creating a drink using req.body,
-    db.drunkDrink.create({
+    db.Drinks.create({
         name: req.body.name,
         body: req.body.body,
         
@@ -33,6 +33,6 @@ app.post("/api/getdrunk", function (req, res) {
             res.send(500);
         });
 });
-}
+};
 
 
