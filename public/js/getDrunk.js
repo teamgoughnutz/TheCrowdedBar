@@ -104,6 +104,6 @@ function displayEmpty() {
   blogContainer.empty();
   var messageH2 = $("<h2>");
   messageH2.css({ "text-align": "center", "margin-top": "50px" });
-  messageH2.html("Welcome to our bar! please add a drink above or browse our Bartender!");
+  messageH2.html("Welcome to The Crowded Bar! Browse our Bartender or add a drink above.");
   blogContainer.append(messageH2);
 }

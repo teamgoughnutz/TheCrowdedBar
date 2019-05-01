@@ -119,7 +119,7 @@ var handleFormSubmit = function(event) {
   };
 
   if (!(newNonDrink.name && newNonDrink.body)) {
-    alert("You must enter an example name and body!");
+    alert("You must enter a drink name and recipe!");
     return;
   }
 
@@ -139,7 +139,7 @@ var handleFormSubmit = function(event) {
   };
 
   if (!(newDrink.name && newDrink.body)) {
-    alert("You must enter an drink Name and Body!");
+    alert("You must enter a drink name and recipe!");
     return;
   }
 
