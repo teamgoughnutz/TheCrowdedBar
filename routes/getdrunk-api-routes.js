@@ -22,8 +22,8 @@ app.post("/api/getdrunk", function (req, res) {
     // Add sequelize code for creating a drink using req.body,
     db.drunkDrink.create({
         name: req.body.name,
-        category: req.body.category,
-        recipe: req.body.recipe,
+        body: req.body.body,
+        
         // then return the result using res.json
     }).then(result => res.json(result))
         .catch(function (err) {
