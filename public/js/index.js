@@ -52,7 +52,7 @@ var API = {
   }
 };
 
-refreshExamples gets new examples from the db and repopulates the list
+//refreshExamples gets new examples from the db and repopulates the list
 var refreshsoberDrinks = function() {
   API.getsoberDrink().then(function(data) {
     var $nonDrink = data.map(function(results) {
@@ -85,7 +85,7 @@ var refreshdrunkDrink = function() {
     var $drunkDrink = data.map(function(results) {
       var $a = $("<a>")
         .text(results.text)
-        .attr("href", "/example/" + example.id);
+        .attr("href", "/drink/" + drink.id);
 
       var $li = $("<li>")
         .attr({
@@ -119,7 +119,7 @@ var handleFormSubmit = function(event) {
   };
 
   if (!(newNonDrink.name && newNonDrink.body)) {
-    alert("You must enter an example name and body!");
+    alert("You must enter a drink name and recipe!");
     return;
   }
 
@@ -139,7 +139,7 @@ var handleFormSubmit = function(event) {
   };
 
   if (!(newDrink.name && newDrink.body)) {
-    alert("You must enter an example Name and Body!");
+    alert("You must enter a drink name and recipe!");
     return;
   }
 
