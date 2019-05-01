@@ -6,7 +6,7 @@ var posts;
 
 // This function grabs posts from the database and updates the view
 function getPosts() {
-  $.get("/api/category/1", function (data) {
+  $.get("/api/drinks/1", function (data) {
     console.log("Posts", data);
     posts = data;
     if (!posts || !posts.length) {
@@ -31,6 +31,7 @@ function deletePost(id) {
 
 // Getting the initial list of posts
 getPosts();
+getDrinks();
 // InitializeRows handles appending all of our constructed post HTML inside
 // blogContainer
 function initializeRows() {
