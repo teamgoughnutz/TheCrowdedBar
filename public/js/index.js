@@ -139,7 +139,7 @@ var handleFormSubmit = function(event) {
   };
 
   if (!(newDrink.name && newDrink.body)) {
-    alert("You must enter an example Name and Body!");
+    alert("You must enter an drink Name and Body!");
     return;
   }
 
