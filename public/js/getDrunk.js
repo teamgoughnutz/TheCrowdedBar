@@ -17,19 +17,6 @@ function getPosts() {
     }
   });
 }
-function getDrinks() {
-  $.get("/api/drinks/1", function (data) {
-    console.log("Posts", data);
-    posts = data;
-    if (!posts || !posts.length) {
-      displayEmpty();
-    }
-    else {
-      initializeRows();
-    }
-  });
-
-}
 
 // This function does an API call to delete posts
 function deletePost(id) {
@@ -44,8 +31,6 @@ function deletePost(id) {
 
 // Getting the initial list of posts
 getPosts();
-getDrinks();
-
 // InitializeRows handles appending all of our constructed post HTML inside
 // blogContainer
 function initializeRows() {
