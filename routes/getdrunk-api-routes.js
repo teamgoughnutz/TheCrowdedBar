@@ -16,7 +16,6 @@ module.exports = function (app) {
                 res.send(500);
             });
     });
-};
 
 //POST route for creating a new GETDRUNK drink
 app.post("/api/getdrunk", function (req, res) {
@@ -32,5 +31,6 @@ app.post("/api/getdrunk", function (req, res) {
             res.send(500);
         });
 });
+}
 
 
