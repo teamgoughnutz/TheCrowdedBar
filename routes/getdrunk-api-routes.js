@@ -8,7 +8,9 @@ module.exports = function (app) {
     //GET route for returning ALL DRINKS in the GETDRUNK category
     app.get("/api/getdrunk", function (req, res) {
         // Add sequelize code to find all GETDRUNK drinks and return the result to the user with res.json
-        db.drunkDrink.findAll({}).then(function (dbGetDrunk) {
+        db.Category.findAll({ where: {
+            CategoryId: 1
+        }}).then(function (dbGetDrunk) {
             res.json(dbGetDrunk);
         })
             .catch(err => {
