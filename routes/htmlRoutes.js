@@ -11,15 +11,15 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../private/homepage.html"));
   });
 
-  //route to Get Drunk
-  // app.get("/getdrunk", function (req, res) {
-  //   res.sendFile(path.join(__dirname, "../private/getdrunk.html"));          will add if we can get these to work
-  // });
+  
+  app.get("/getdrunk", function (req, res) {
+    res.sendFile(path.join(__dirname, "../private/getdrunk.html"));         
+  });
 
-  //route to Stay Sober
-  // app.get("/staysober", function (req, res) {
-  //   res.sendFile(path.join(__dirname, "../private/virgin.html"));                 will add if we can get these to work
-  // });
+  
+   app.get("/staysober", function (req, res) {
+    res.sendFile(path.join(__dirname, "../private/virgin.html"));                 
+  });
   app.get("/staysober", function (req, res) {
     res.sendFile(path.join(__dirname, "../private/virgin.html"));
   });
