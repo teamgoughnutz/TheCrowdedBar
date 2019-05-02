@@ -13,16 +13,16 @@ module.exports = function (app) {
 
   //route to Get Drunk
   // app.get("/getdrunk", function (req, res) {
-  //   res.sendFile(path.join(__dirname, "../private/getdrunk.html"));
+  //   res.sendFile(path.join(__dirname, "../private/getdrunk.html"));          will add if we can get these to work
   // });
 
   //route to Stay Sober
   // app.get("/staysober", function (req, res) {
-  //   res.sendFile(path.join(__dirname, "../private/virgin.html"));
+  //   res.sendFile(path.join(__dirname, "../private/virgin.html"));                 will add if we can get these to work
   // });
 
   app.get("/signup", function (req, res) {
-    // If the user already has an account send them to the members page
+    // If the user already has an account send them to the members page 
     if (req.user) {
       res.redirect("../private/homepage.html");
     }

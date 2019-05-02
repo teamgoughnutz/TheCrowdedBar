@@ -6,12 +6,10 @@ var db = require("../models");
 module.exports = function (app) {
 
     //Get Drunk
-    app.get("/api/getdrunk", function (req, res) {
+    app.get("/api/drinks", function (req, res) {
         // Add sequelize code to find all GETDRUNK drinks and return the result to the user with res.json
+        console.log("this is test run")
         db.Category.findAll({
-            where: {
-                CategoryId: 1
-            }
         }).then(function (dbGetDrunk) {
             res.json(dbGetDrunk);
         })
@@ -20,6 +18,21 @@ module.exports = function (app) {
                 res.send(500);
             });
     });
+
+    // app.get("/api/getdrunk", function (req, res) {
+    //     // Add sequelize code to find all GETDRUNK drinks and return the result to the user with res.json
+    //     db.Drinks.findAll({
+    //         where: {
+    //         id: []
+    //         }
+    //     }).then(function (dbGetDrunk) {
+    //         res.json(dbGetDrunk);
+    //     })
+    //         .catch(err => {
+    //             console.log(err.message);
+    //             res.send(500);
+    //         });
+    // });
 
     app.post("/api/getdrunk", function (req, res) {
         // Add sequelize code for creating a drink using req.body,
