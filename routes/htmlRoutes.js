@@ -12,27 +12,27 @@ module.exports = function (app) {
   });
 
   //route to Get Drunk
-  app.get("/getdrunk", function (req, res) {
-    res.sendFile(path.join(__dirname, "../private/getdrunk.html"));
-  });
+  // app.get("/getdrunk", function (req, res) {
+  //   res.sendFile(path.join(__dirname, "../private/getdrunk.html"));          will add if we can get these to work
+  // });
 
   //route to Stay Sober
-  app.get("/staysober", function (req, res) {
-    res.sendFile(path.join(__dirname, "../private/virgin.html"));
-  });
+  // app.get("/staysober", function (req, res) {
+  //   res.sendFile(path.join(__dirname, "../private/virgin.html"));                 will add if we can get these to work
+  // });
 
   app.get("/signup", function (req, res) {
-    // If the user already has an account send them to the members page
+    // If the user already has an account send them to the members page 
     if (req.user) {
-      res.redirect("/members");
+      res.redirect("../private/homepage.html");
     }
     res.sendFile(path.join(__dirname, "../private/signup.html"));
   });
 
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
-  app.get("/members", isAuthenticated, function (req, res) {
-    res.sendFile(path.join(__dirname, "../private/members.html"));
+  app.get("/", isAuthenticated, function (req, res) {
+    res.sendFile(path.join(__dirname, "../private/homepage.html"));
   });
 };
 
