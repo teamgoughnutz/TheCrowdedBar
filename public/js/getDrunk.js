@@ -18,7 +18,7 @@ function getPosts() {
   });
 }
 function getDrinks() {
-  $.get("/api/drinks/1", function (data) {
+  $.get("/api/drinks", function (data) {
     console.log("Posts", data);
     posts = data;
     if (!posts || !posts.length) {
@@ -43,7 +43,7 @@ function deletePost(id) {
 }
 
 // Getting the initial list of posts
-getPosts();
+// getPosts();
 getDrinks();
 
 // InitializeRows handles appending all of our constructed post HTML inside
