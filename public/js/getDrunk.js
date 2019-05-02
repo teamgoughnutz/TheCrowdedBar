@@ -5,7 +5,6 @@ $(document).ready(function () {
     $(document).on("click", "button.edit", handlePostEdit);
     var posts;
 
-<<<<<<< HEAD
 // This function grabs posts from the database and updates the view
 function getPosts() {
   $.get("/api/category/1", function (data) {
@@ -45,33 +44,6 @@ function deletePost(id) {
 // Getting the initial list of posts
 // getPosts();
 getDrinks();
-=======
-    // This function grabs posts from the database and updates the view
-    function getDrinks() {
-        $.get("/api/getdrunk", function (data) {
-            console.log("Drinks", data);
-            posts = data;
-
-            if (!posts || !posts.length) {
-                displayEmpty();
-            }
-            else {
-                initializeRows();
-            }
-        });
-    }
-
-    // This function does an API call to delete posts
-    function deletePost(id) {
-        $.ajax({
-            method: "DELETE",
-            url: "/api/posts/" + id
-        })
-            .then(function () {
-                getPosts();
-            });
-    }
->>>>>>> johnnyboy
 
     // Getting the initial list of posts
     
@@ -143,7 +115,6 @@ getDrinks();
         window.location.href = "/cms?post_id=" + currentPost.id;
     }
 
-<<<<<<< HEAD
 // This function displays a message when there are no posts
 function displayEmpty() {
   blogContainer.empty();
@@ -152,14 +123,4 @@ function displayEmpty() {
   messageH2.html("Welcome to our bar! please add a drink above or browse our Bartender!");
   blogContainer.append(messageH2);
 }
-=======
-    // This function displays a message when there are no posts
-    function displayEmpty() {
-        blogContainer.empty();
-        var messageH2 = $("<h2>");
-        messageH2.css({ "text-align": "center", "margin-top": "50px" });
-        messageH2.html("Welcome to our bar! please add a drink above or browse our Bartender!");
-        blogContainer.append(messageH2);
-    }
 });
->>>>>>> johnnyboy

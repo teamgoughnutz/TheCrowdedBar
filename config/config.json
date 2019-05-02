@@ -5,11 +5,7 @@
     "database": "drink_db",
     "host": "localhost",
     "dialect": "mysql",
-<<<<<<< HEAD
     "port": 8889
-=======
-    "port": 3306 
->>>>>>> johnnyboy
   },
   "test": {
     "username": "root",
