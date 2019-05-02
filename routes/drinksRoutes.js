@@ -8,8 +8,13 @@ module.exports = function (app) {
     //Get Drunk
     app.get("/api/drinks", function (req, res) {
         // Add sequelize code to find all GETDRUNK drinks and return the result to the user with res.json
+<<<<<<< HEAD
         console.log("this is test run")
         db.Category.findAll({
+=======
+        db.Drinks.findAll({
+           
+>>>>>>> johnnyboy
         }).then(function (dbGetDrunk) {
             res.json(dbGetDrunk);
         })
@@ -19,6 +24,7 @@ module.exports = function (app) {
             });
     });
 
+<<<<<<< HEAD
     // app.get("/api/getdrunk", function (req, res) {
     //     // Add sequelize code to find all GETDRUNK drinks and return the result to the user with res.json
     //     db.Drinks.findAll({
@@ -33,6 +39,22 @@ module.exports = function (app) {
     //             res.send(500);
     //         });
     // });
+=======
+    app.get("/api/getdrunk/:id", function (req, res) {
+        // Add sequelize code to find all GETDRUNK drinks and return the result to the user with res.json
+        db.Drinks.findAll({
+            where: {
+            id: []
+            }
+        }).then(function (dbGetDrunk) {
+            res.json(dbGetDrunk);
+        })
+            .catch(err => {
+                console.log(err.message);
+                res.send(500);
+            });
+    });
+>>>>>>> johnnyboy
 
     app.post("/api/getdrunk", function (req, res) {
         // Add sequelize code for creating a drink using req.body,

@@ -2,33 +2,56 @@
 <html lang="en">
 
 <head>
-  <title>Passport Authentication</title>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
-  <link href="stylesheets/style.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link href="styles/homepage.css" rel="stylesheet">
+  <title>The Crowded Bar</title>
 </head>
 
-<body>
-  <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
+<body class="text-center" background="images/homepage.png"
+  style=" -webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
+  <!-- Button trigger modal -->
+  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <nav class="navbar navbar-light bg-light"
+      style="background-color: transparent !important;  margin-bottom: 200px !important;">
+      <a class="navbar-brand" href="/"><img style="max-width:300px;" src="images/title 2.png" alt=""></a>
       <a class="navbar-brand" href="/logout">
         Logout
       </a>
-    </div>
-  </div>
-</nav>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Welcome <span class="member-name"></span></h2>
-      </div>
-    </div>
+    </nav>
+
+    
+    <main role="main" class="inner cover">
+      <h1 class="cover-heading"style="font-family: algerian;margin-bottom:110px; border-line: 1px;">Pick your poison</h1>
+      <div class="container"style="margin-bottom:110px;">
+          <div class="row">
+            <div class="col-sm">
+              <div id="drunkCards"></div>
+                </div>
+            </div>
+            
+           
+          </div>
+        </div>
+  </main>
+</div>
   </div>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.0.min.js"
+      integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="js/members.js"></script>
+  <script src="/public/js/members.js"></script>
 
 </body>
 
