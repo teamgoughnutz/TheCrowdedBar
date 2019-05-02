@@ -8,9 +8,22 @@ module.exports = function (app) {
     //Get Drunk
     app.get("/api/getdrunk", function (req, res) {
         // Add sequelize code to find all GETDRUNK drinks and return the result to the user with res.json
-        db.Category.findAll({
+        db.Drinks.findAll({
+           
+        }).then(function (dbGetDrunk) {
+            res.json(dbGetDrunk);
+        })
+            .catch(err => {
+                console.log(err.message);
+                res.send(500);
+            });
+    });
+
+    app.get("/api/getdrunk/:id", function (req, res) {
+        // Add sequelize code to find all GETDRUNK drinks and return the result to the user with res.json
+        db.Drinks.findAll({
             where: {
-                CategoryId: 1
+            id: []
             }
         }).then(function (dbGetDrunk) {
             res.json(dbGetDrunk);
