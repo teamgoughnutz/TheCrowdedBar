@@ -17,9 +17,18 @@ module.exports = function (app) {
   // });
 
   //route to Stay Sober
-  // app.get("/staysober", function (req, res) {
-  //   res.sendFile(path.join(__dirname, "../private/virgin.html"));                 will add if we can get these to work
-  // });
+  app.get("/staysober", function (req, res) {
+    res.sendFile(path.join(__dirname, "../private/virgin.html"));
+  });
+ //route to members
+ app.get("/members", function (req, res) {
+  res.sendFile(path.join(__dirname, "../private/members.html"));
+});
+
+//route to create
+app.get("/create", function (req, res) {
+  res.sendFile(path.join(__dirname, "../private/create.html"));
+});
 
   app.get("/signup", function (req, res) {
     // If the user already has an account send them to the members page 

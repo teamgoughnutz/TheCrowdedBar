@@ -1,19 +1,34 @@
-var blogContainer = $("#drunkCards");
-// Click events for the edit and delete buttons
-$(document).on("click", "button.delete", handlePostDelete);
-$(document).on("click", "button.edit", handlePostEdit);
-var posts;
+$(document).ready(function () {
+    var blogContainer = $("#drunkCards");
+    // Click events for the edit and delete buttons
+    $(document).on("click", "button.delete", handlePostDelete);
+    $(document).on("click", "button.edit", handlePostEdit);
+    var posts;
 
-// This function grabs posts from the database and updates the view
-function getPosts() {
-  $.get("/api/category/1", function (data) {
-    console.log("Posts", data);
-    posts = data;
-    if (!posts || !posts.length) {
-      displayEmpty();
+    // This function grabs posts from the database and updates the view
+    function getDrinks() {
+        $.get("/api/getdrunk", function (data) {
+            console.log("Drinks", data);
+            posts = data;
+
+            if (!posts || !posts.length) {
+                displayEmpty();
+            }
+            else {
+                initializeRows();
+            }
+        });
     }
-    else {
-      initializeRows();
+
+    // This function does an API call to delete posts
+    function deletePost(id) {
+        $.ajax({
+            method: "DELETE",
+            url: "/api/posts/" + id
+        })
+            .then(function () {
+                getPosts();
+            });
     }
   });
 }
@@ -24,10 +39,42 @@ function getDrinks() {
     if (!posts || !posts.length) {
       displayEmpty();
     }
-    else {
-      initializeRows();
+
+    // This function constructs a post's HTML
+    function createNewRow(post) {
+        var newPostCard = $("<div>");
+        newPostCard.addClass("card");
+        var newPostCardHeading = $("<div>");
+        newPostCardHeading.addClass("card-header");
+        var deleteBtn = $("<button>");
+        deleteBtn.text("x");
+        deleteBtn.addClass("delete btn btn-danger");
+        var editBtn = $("<button>");
+        editBtn.text("EDIT");
+        editBtn.addClass("edit btn btn-default");
+        var newPostTitle = $("<h2>");
+        var newPostCategory = $("<h5>");
+        newPostCategory.text(post.category);
+        newPostCategory.css({
+            float: "right",
+            "font-weight": "700",
+            "margin-top":
+                "-15px"
+        });
+        var newPostCardBody = $("<div>");
+        newPostCardBody.addClass("card-body");
+        var newPostBody = $("<p>");
+        newPostTitle.text(post.name);
+        newPostBody.text(post.body);
+       
+        newPostCardHeading.append(newPostTitle);
+        newPostCardHeading.append(newPostCategory);
+        newPostCardBody.append(newPostBody);
+        newPostCard.append(newPostCardHeading);
+        newPostCard.append(newPostCardBody);
+        newPostCard.data("post", post);
+        return newPostCard;
     }
-  });
 
 // This function does an API call to delete posts
 function deletePost(id) {
