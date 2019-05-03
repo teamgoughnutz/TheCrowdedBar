@@ -14,6 +14,23 @@ function createSeeds(seeds, Model) {
             });
     }
 }
+var drinkSeeds = [{
+    
+    name: "Tequilla",
+    body: "1 shot",
+    CategoryId: 1
+
+},{
+    name: "Vodka",
+    body: "1 shot",
+    CategoryId: 2
+}
+   
+];
+
+
+
 db.sequelize.sync({force: true}).then(function () {
     createSeeds(categorySeeds, db.Category);
+    createSeeds(drinkSeeds, db.Drinks);
 });

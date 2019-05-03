@@ -115,11 +115,12 @@ var handleFormSubmit = function(event) {
 
   var newNonDrink = {
     name: $nonDrinkName.val().trim(),
-    body: $nonDrinkbody.val().trim()
+    body: $nonDrinkbody.val().trim(),
+    category: $nonDrinkCategory.val().trim()
   };
 
   if (!(newNonDrink.name && newNonDrink.body)) {
-    alert("You must enter an example name and body!");
+    alert("You must enter a drink name and recipe!");
     return;
   }
 
@@ -135,11 +136,12 @@ var handleFormSubmit = function(event) {
 
   var newDrink = {
     name: $drinkName.val().trim(),
-    body: $drinkBody.val().trim()
+    body: $drinkBody.val().trim(),
+    category: $drinkCategory.val().trim()
   };
 
   if (!(newDrink.name && newDrink.body)) {
-    alert("You must enter an drink Name and Body!");
+    alert("You must enter a drink name and recipe!");
     return;
   }
 
