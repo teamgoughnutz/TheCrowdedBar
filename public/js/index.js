@@ -115,7 +115,8 @@ var handleFormSubmit = function(event) {
 
   var newNonDrink = {
     name: $nonDrinkName.val().trim(),
-    body: $nonDrinkbody.val().trim()
+    body: $nonDrinkbody.val().trim(),
+    category: $nonDrinkCategory.val().trim()
   };
 
   if (!(newNonDrink.name && newNonDrink.body)) {
@@ -135,7 +136,8 @@ var handleFormSubmit = function(event) {
 
   var newDrink = {
     name: $drinkName.val().trim(),
-    body: $drinkBody.val().trim()
+    body: $drinkBody.val().trim(),
+    category: $drinkCategory.val().trim()
   };
 
   if (!(newDrink.name && newDrink.body)) {
