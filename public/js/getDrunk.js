@@ -9,7 +9,7 @@ $(document).ready(function () {
 function getPosts() {
   $.get("/api/category/1", function (data) {
     console.log("Posts", data);
-    posts = data;
+    posts = data.Drinks;
     if (!posts || !posts.length) {
       displayEmpty();
     }
@@ -18,18 +18,18 @@ function getPosts() {
     }
   });
 }
-function getDrinks() {
-  $.get("/api/drinks", function (data) {
-    console.log("Posts", data);
-    posts = data;
-    if (!posts || !posts.length) {
-      displayEmpty();
-    }
-    else {
-      initializeRows();
-    }
-  });
-}
+// function getDrinks() {
+//   $.get("/api/category/1", function (data) {
+//     console.log("Posts", data);
+//     posts = data.drinks;
+//     if (!posts || !posts.length) {
+//       displayEmpty();
+//     }
+//     else {
+//       initializeRows();
+//     }
+//   });
+// }
 // This function does an API call to delete posts
 function deletePost(id) {
   $.ajax({
@@ -42,12 +42,12 @@ function deletePost(id) {
 }
 
 // Getting the initial list of posts
-// getPosts();
-getDrinks();
+getPosts();
+// getDrinks();
 
     // Getting the initial list of posts
     
-    getDrinks();
+  
     // InitializeRows handles appending all of our constructed post HTML inside
     // blogContainer
     function initializeRows() {
