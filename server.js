@@ -26,6 +26,7 @@ require("./routes/htmlroutes")(app);
 require("./routes/categoryRoutes")(app);
 require("./routes/drinksRoutes")(app);
 
+
 var syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true
