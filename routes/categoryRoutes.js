@@ -19,7 +19,11 @@ module.exports = function(app) {
       include: [db.Drinks]
     }).then(function(dbCategory) {
       res.json(dbCategory);
-    });
+
+   }).catch(function(err){
+     res.status(500).json(err.message);
+       });
+
   });
 
   app.post("/api/category", function(req, res) {

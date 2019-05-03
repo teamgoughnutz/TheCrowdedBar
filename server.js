@@ -24,7 +24,8 @@ app.use(passport.session()); // manage with cookies
 require("./routes/api-routes")(app);
 require("./routes/htmlroutes")(app);
 require("./routes/categoryRoutes")(app);
-require("./routes/staysober-api-routes")(app);
+require("./routes/drinksRoutes")(app);
+
 
 var syncOptions = { force: false };
 
