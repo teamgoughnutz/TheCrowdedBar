@@ -1,0 +1,48 @@
+button.submit {
+  float: right;
+}
+
+form#cms {
+  margin-top: 50px;
+ color: snow;
+
+  
+}
+
+#cms textarea {
+  resize: none;
+}
+
+.card-header button.delete,
+button.edit {
+  float: right;
+  margin: 5px;
+}
+
+.top-30 {
+  margin-top: 30px;
+}
+body{
+  background-image: url(../images/alcohol-background-bar-745410.jpg);
+  background-size: 100%;
+  background-image: center;
+  color: black;
+  text-shadow: 1px 1px whitesmoke;
+
+
+}
+#category {
+  color: black;
+
+}
+#selectCat {
+  color: black;
+  font-weight: bold;  
+
+}
+h1 {
+  color: whitesmoke;
+  text-shadow: 2px 2px black;
+  
+}
+

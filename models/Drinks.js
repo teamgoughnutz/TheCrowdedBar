@@ -1,28 +1,24 @@
-//GetDrunk drinks js
-
-module.exports = function (sequelize, DataTypes) {
-  var Drinks = sequelize.define("Drinks", {
-    name: {
+module.exports = function(sequelize, DataTypes) {
+  var Drink = sequelize.define("Drink", {
+    title: {
       type: DataTypes.STRING,
-      allowNull: false,
       validate: {
-        len: [1, 50]
-      }
+        len: [1,140]
+      },
+      allowNull: false
     },
     body: {
+      type: DataTypes.TEXT,
+      validate:{
+        len:[1,400]
+      },
+      allowNull: false
+    },
+    category: {
       type: DataTypes.STRING,
-      allowNull: false,
-      len: [500]
+      defaultValue: "Get Drunk"
     }
-  });
 
-  Drinks.associate = function(models) {
-    Drinks.belongsTo(models.Category, {
-      foreignKey: {
-        allowNull: false
-    }
   });
-};
-
-  return Drinks;
+  return Drink;
 };

@@ -1,37 +1,19 @@
 {
-  "name": "thecrowdedbar",
+  "name": "blog-crud",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "directories": {
-    "test": "test"
-  },
-  "dependencies": {
-    "bcrypt-nodejs": "^0.0.3",
-    "dotenv": "^7.0.0",
-    "express": "^4.16.4",
-    "express-session": "^1.16.1",
-    "mysql2": "^1.6.5",
-    "nightmare": "^3.0.2",
-    "nodemon": "^1.19.0",
-    "passport": "^0.4.0",
-    "passport-local": "^1.0.0",
-    "sequelize": "^5.8.2"
-  },
-  "devDependencies": {},
   "scripts": {
-    "test": "mocha",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "seed": "node db/seeds.js"
+    "watch": "nodemon server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/teamgoughnutz/TheCrowdedBar.git"
-  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/teamgoughnutz/TheCrowdedBar/issues"
-  },
-  "homepage": "https://github.com/teamgoughnutz/TheCrowdedBar#readme"
+  "dependencies": {
+    "express": "^4.16.3",
+    "mysql2": "^1.6.4",
+    "sequelize": "^4.41.2"
+  }
 }
